@@ -1,4 +1,34 @@
 <div class="container">
-  <h1>Best login ever!</h1>
+  <div class="row justify-content-md-center align-items-center vh-100">
+    <div class="col-md-auto card p-4">
+      <div class="card-body">
+        <h5 class="card-title">Account login</h5>
+
+        <form>
+          <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="email" name="email" class="form-control" id="inputEmail" autofocus autocomplete="email" required>
+          </div>
+  
+          <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <button id="toggle-password" type="button" aria-label="Show password as plain text. Warning: this will display your password on the screen.">Show password</button>
+            <input type="password" name="current-password" class="form-control" id="inputPassword" autocomplete="current-password" aria-describedby="password-constraints" required>
+            <small id="password-constraints" class="form-text text-muted">
+              Eight or more characters, with at least one lowercase and one uppercase letter.
+            </small>
+          </div>
+  
+          <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+        </form>
+
+        <div class="mt-4">
+          <small class="d-block mb-2">Forgot <a href="" class="card-link">Username / Password?</a></small>
+          <small class="d-block">Create an account? <a href="" class="card-link">Sign up!</a></small>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <router-outlet></router-outlet>
 </div>
