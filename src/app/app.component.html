@@ -12,8 +12,30 @@
   
           <div class="form-group">
             <label for="inputPassword">Password</label>
-            <button id="toggle-password" type="button" aria-label="Show password as plain text. Warning: this will display your password on the screen.">Show password</button>
-            <input type="password" name="current-password" class="form-control" id="inputPassword" autocomplete="current-password" aria-describedby="password-constraints" required>
+            <button
+              *ngIf="passwordHidden"
+              type="button"
+              (click)="togglePassword()"
+              class="toggle-password"
+              aria-label="Show password as plain text. Warning: this will display your password on the screen.">
+              Show password
+            </button>
+            <button
+              *ngIf="!passwordHidden"
+              type="button"
+              (click)="togglePassword()"
+              class="toggle-password"
+              aria-label="Hide password.">
+              Hide password
+            </button>
+            <input
+              [type]="passwordHidden ? 'password' : 'text'"
+              name="current-password"
+              id="inputPassword"
+              class="form-control"
+              autocomplete="current-password"
+              aria-describedby="password-constraints"
+              required>
             <small id="password-constraints" class="form-text text-muted">
               Eight or more characters, with at least one lowercase and one uppercase letter.
             </small>

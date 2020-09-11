@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'best-login-ever';
+  public passwordHidden = true;
+
+  public togglePassword(): void {
+    this.passwordHidden = !this.passwordHidden;
+  }
 }
