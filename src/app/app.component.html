@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row justify-content-md-center align-items-center vh-100">
-    <div class="col-md-auto card p-4">
+    <div class="col-md-6 card p-4">
       <div class="card-body">
         <h5 class="card-title">Account login</h5>
 
@@ -20,10 +20,10 @@
               autofocus
               autocomplete="email"
               required>
-            <div class="invalid-feedback">
-              <span *ngIf="loginForm.get('email').errors?.required">Please fill in your email.</span>
-              <span *ngIf="loginForm.get('email').errors?.email">Please fill in a valid email.</span>
-            </div>
+            <ul class="invalid-feedback">
+              <li *ngIf="loginForm.get('email').errors?.required">Please fill in your email.</li>
+              <li *ngIf="loginForm.get('email').errors?.email">Please fill in a valid email.</li>
+            </ul>
           </div>
   
           <div class="form-group">
@@ -46,31 +46,29 @@
             </button>
             <input
               [type]="passwordHidden ? 'password' : 'text'"
-              formControlName="currentPassword"
+              formControlName="current-password"
               id="inputPassword"
               class="form-control"
-              [ngClass]="{'is-invalid': (loginForm.get('currentPassword').touched || 
-                                        loginForm.get('currentPassword').dirty) && 
-                                        !loginForm.get('currentPassword').valid || 
-                                        (!loginForm.get('currentPassword').valid && submitted), 
-                  		      'is-valid': loginForm.get('currentPassword').valid}"
-              autocomplete="currentPassword"
+              [ngClass]="{'is-invalid': (loginForm.get('current-password').touched || 
+                                        loginForm.get('current-password').dirty) && 
+                                        !loginForm.get('current-password').valid || 
+                                        (!loginForm.get('current-password').valid && submitted), 
+                  		      'is-valid': loginForm.get('current-password').valid}"
+              autocomplete="current-password"
               aria-describedby="password-constraints"
               required>
             <small id="password-constraints" class="form-text text-muted">
               Eight or more characters, with at least one lowercase and one uppercase letter.
             </small>
-            <div class="invalid-feedback">
-              <span *ngIf="loginForm.get('currentPassword').errors?.required">Please fill in your password.</span>
-              <span *ngIf="loginForm.get('currentPassword').errors?.minlength">Please make sure your password has at 8 or more characters.</span>
-              <span *ngIf="loginForm.get('currentPassword').errors?.lowercase">Please make sure your password contains at least one lowercase letter.</span>
-              <span *ngIf="loginForm.get('currentPassword').errors?.uppercase">Please make sure your password contains at least one uppercase letter.</span>
-            </div>
+            <ul class="invalid-feedback">
+              <li *ngIf="loginForm.get('current-password').errors?.required">Please fill in your password.</li>
+              <li *ngIf="loginForm.get('current-password').errors?.minlength">Please make sure your password has at 8 or more characters.</li>
+              <li *ngIf="loginForm.get('current-password').errors?.lowercase">Please make sure your password contains at least one lowercase letter.</li>
+              <li *ngIf="loginForm.get('current-password').errors?.uppercase">Please make sure your password contains at least one uppercase letter.</li>
+            </ul>
           </div>
   
           <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-
-          <pre>{{ loginForm.get('currentPassword').errors | json }}</pre>
         </form>
 
         <div class="mt-4">

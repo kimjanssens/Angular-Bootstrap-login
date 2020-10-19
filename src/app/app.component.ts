@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   public ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      currentPassword: ['', [
+      ['current-password']: ['', [
         Validators.required,
         Validators.minLength(8),
         lowercaseValidator,
