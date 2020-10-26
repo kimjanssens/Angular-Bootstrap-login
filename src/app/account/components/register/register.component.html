@@ -1,0 +1,87 @@
+<div class="card p-4">
+    <div class="card-body">
+        <h5 class="card-title">Account registration</h5>
+
+        <div *ngIf="submitted && registerForm.invalid" class="alert alert-danger" role="alert">
+            Please correct all errors before submitting
+        </div>
+
+        <form novalidate (ngSubmit)="submit()" [formGroup]="registerForm">
+            <div class="form-group">
+                <label for="inputFirstName">First name</label>
+                <input type="text" formControlName="firstName" id="inputFirstName" class="form-control" [ngClass]="{'is-invalid': (registerForm.get('firstName').touched || 
+                                    registerForm.get('firstName').dirty) && 
+                                    !registerForm.get('firstName').valid || 
+                                    (!registerForm.get('firstName').valid && submitted), 
+                            'is-valid': registerForm.get('firstName').valid}" autofocus autocomplete="firstName" required>
+                <ul class="invalid-feedback">
+                    <li *ngIf="registerForm.get('firstName').errors?.required">Please fill in your first name.</li>
+                    <li *ngIf="registerForm.get('firstName').errors?.letters">Please make sure your first name only contains letters.</li>
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label for="inputlastName">Last name</label>
+                <input type="text" formControlName="lastName" id="inputlastName" class="form-control" [ngClass]="{'is-invalid': (registerForm.get('lastName').touched || 
+                                    registerForm.get('lastName').dirty) && 
+                                    !registerForm.get('lastName').valid || 
+                                    (!registerForm.get('lastName').valid && submitted), 
+                            'is-valid': registerForm.get('lastName').valid}" autocomplete="lastName" required>
+                <ul class="invalid-feedback">
+                    <li *ngIf="registerForm.get('lastName').errors?.required">Please fill in your last name.</li>
+                    <li *ngIf="registerForm.get('firstName').errors?.letters">Please make sure your last name only contains letters.</li>
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail">Email</label>
+                <input type="email" formControlName="email" id="inputEmail" class="form-control" [ngClass]="{'is-invalid': (registerForm.get('email').touched || 
+                                    registerForm.get('email').dirty) && 
+                                    !registerForm.get('email').valid || 
+                                    (!registerForm.get('email').valid && submitted), 
+                            'is-valid': registerForm.get('email').valid}" autocomplete="email" required>
+                <ul class="invalid-feedback">
+                    <li *ngIf="registerForm.get('email').errors?.required">Please fill in your email.</li>
+                    <li *ngIf="registerForm.get('email').errors?.email">Please fill in a valid email.</li>
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label for="inputPassword">Password</label>
+                <button *ngIf="passwordHidden" type="button" (click)="togglePassword()" class="toggle-password"
+                    aria-label="Show password as plain text. Warning: this will display your password on the screen.">
+                    Show password
+                </button>
+                <button *ngIf="!passwordHidden" type="button" (click)="togglePassword()" class="toggle-password"
+                    aria-label="Hide password.">
+                    Hide password
+                </button>
+                <input [type]="passwordHidden ? 'password' : 'text'" formControlName="new-password"
+                    id="inputPassword" class="form-control" [ngClass]="{'is-invalid': (registerForm.get('new-password').touched || 
+                                    registerForm.get('new-password').dirty) && 
+                                    !registerForm.get('new-password').valid || 
+                                    (!registerForm.get('new-password').valid && submitted), 
+                            'is-valid': registerForm.get('new-password').valid}" autocomplete="new-password"
+                    aria-describedby="password-constraints" required>
+                <small id="password-constraints" class="form-text text-muted">
+                    Eight or more characters, with at least one lowercase and one uppercase letter.
+                </small>
+                <ul class="invalid-feedback">
+                    <li *ngIf="registerForm.get('new-password').errors?.required">Please fill in your password.</li>
+                    <li *ngIf="registerForm.get('new-password').errors?.minlength">Please make sure your password has
+                        at 8 or more characters.</li>
+                    <li *ngIf="registerForm.get('new-password').errors?.lowercase">Please make sure your password
+                        contains at least one lowercase letter.</li>
+                    <li *ngIf="registerForm.get('new-password').errors?.uppercase">Please make sure your password
+                        contains at least one uppercase letter.</li>
+                </ul>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </form>
+
+        <div class="mt-4">
+            <small class="d-block">Already have an account? <a [routerLink]="['../login']" class="card-link">Sign in!</a></small>
+        </div>
+    </div>
+</div>
