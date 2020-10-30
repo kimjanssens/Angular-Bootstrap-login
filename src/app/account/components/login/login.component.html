@@ -2,6 +2,10 @@
     <div class="card-body">
         <h5 class="card-title">Account login</h5>
 
+        <div *ngIf="submitted && loginForm.invalid" class="alert alert-danger" role="alert">
+            Invalid email or password
+        </div>
+
         <form novalidate (ngSubmit)="submit()" [formGroup]="loginForm">
             <div class="form-group">
                 <label for="inputEmail">Email</label>
@@ -32,18 +36,9 @@
                                     !loginForm.get('current-password').valid || 
                                     (!loginForm.get('current-password').valid && submitted), 
                             'is-valid': loginForm.get('current-password').valid}" autocomplete="current-password"
-                    aria-describedby="password-constraints" required>
-                <small id="password-constraints" class="form-text text-muted">
-                    Eight or more characters, with at least one lowercase and one uppercase letter.
-                </small>
+                    required>
                 <ul class="invalid-feedback">
                     <li *ngIf="loginForm.get('current-password').errors?.required">Please fill in your password.</li>
-                    <li *ngIf="loginForm.get('current-password').errors?.minlength">Please make sure your password has
-                        at 8 or more characters.</li>
-                    <li *ngIf="loginForm.get('current-password').errors?.lowercase">Please make sure your password
-                        contains at least one lowercase letter.</li>
-                    <li *ngIf="loginForm.get('current-password').errors?.uppercase">Please make sure your password
-                        contains at least one uppercase letter.</li>
                 </ul>
             </div>
 
@@ -52,7 +47,8 @@
 
         <div class="mt-4">
             <small class="d-block mb-2">Forgot <a href="" class="card-link">Username / Password?</a></small>
-            <small class="d-block">Create an account? <a [routerLink]="['../register']" class="card-link">Sign up!</a></small>
+            <small class="d-block">Create an account? <a [routerLink]="['../register']" class="card-link">Sign
+                    up!</a></small>
         </div>
     </div>
 </div>
