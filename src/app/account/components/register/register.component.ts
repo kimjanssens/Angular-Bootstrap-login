@@ -36,7 +36,6 @@ export class RegisterComponent implements OnInit {
   public submit(): void {
     this.submitted = true;
 
-    
     console.log(this.registerForm);
   }
 }
