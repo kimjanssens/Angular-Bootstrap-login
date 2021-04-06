@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AccountService } from '../../account.service';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private accountService: AccountService,
     private router: Router
   ) { }
 
@@ -29,11 +31,14 @@ export class LoginComponent implements OnInit {
   }
 
   public submit(): void {
-    console.log(this.loginForm.value);
     this.submitted = true;
 
     if (this.loginForm.valid) {
-      this.router.navigate(['admin']);
+      console.log(this.accountService.login(this.loginForm.value));
+      
+      if (this.accountService.login(this.loginForm.value)) {
+        this.router.navigate(['admin']);
+      }
     }
   }
 }
